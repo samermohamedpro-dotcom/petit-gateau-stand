@@ -65,9 +65,9 @@ button:disabled{cursor:default;opacity:.45}
 .payer{position:fixed;left:0;right:0;bottom:var(--bas);z-index:4;background:var(--creme);border-top:1px solid var(--sauge)}
 .payer .dedans{max-width:760px;margin:0 auto;padding:8px 14px 10px}
 .payer .etiquette{display:block;margin:0 4px 6px}
-.payer .grille{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.payer .qr{grid-column:1/-1;min-height:56px;font-size:1.05rem}
-.payer .large{grid-column:1/-1}
+/* Une seule rangée (Samer, 24/11/2026 : « trop gros, prend trop de place ») : la liste des produits reste ce qu'on voit le plus. */
+.payer .grille{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;gap:6px}
+.payer .btn{min-height:48px;padding:0 6px;font-size:.92rem}
 .vide{margin:24px 18px;padding:22px;background:var(--carte);border-radius:18px;text-align:center}
 
 /* ── Orders ── */
@@ -138,6 +138,13 @@ button:disabled{cursor:default;opacity:.45}
 .produitReglage img,.produitReglage .sansphoto{width:52px;height:52px;border-radius:12px;object-fit:cover;flex:none;background:var(--carte)}
 .produitReglage .txt{flex:1;min-width:0;font-size:.9rem}
 .produitReglage .txt b{display:block;overflow-wrap:anywhere}
+.produitReglage{flex-wrap:wrap}
+.produitReglage .gestes{display:flex;gap:6px;flex-wrap:wrap;width:100%;padding-left:62px}
+.mini.danger{color:var(--bordeaux);background:#fff;box-shadow:inset 0 0 0 2px #F3C9BE}
+.tuile-photo{border-radius:12px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--vertdoux);color:var(--vert);font-weight:900;cursor:pointer;min-height:64px}
+.tuile-photo span{font-size:1.5rem;line-height:1}
+.tuile-photo small{font-size:.72rem;font-weight:700}
+.entete .sortie{margin-left:auto;font-size:.85rem}
 .produitReglage.eteint{opacity:.5}
 .mini{min-height:44px;min-width:44px;border-radius:999px;background:var(--carte);font-weight:900;padding:0 12px}
 .photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px}
