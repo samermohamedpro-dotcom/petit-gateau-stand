@@ -1,0 +1,159 @@
+/* ═══════════════════════════════════════════════════════════════════
+   La caisse de stand — direction B pour « Sell » et « Orders », choisie par
+   Samer le 24/11/2026. Couleurs, polices et formes : compétence petit-gateau
+   (bordeaux sur crème, toutes les actions en vert profond, coins ronds,
+   Fraunces pour les titres, les prix et les numéros, Figtree pour le reste).
+   Faite pour le pouce : rien de touchable sous 44 px.
+   ═══════════════════════════════════════════════════════════════════ */
+@font-face{font-family:Figtree;src:url(polices/figtree-latin-400-normal.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Figtree;src:url(polices/figtree-latin-700-normal.woff2) format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Figtree;src:url(polices/figtree-latin-900-normal.woff2) format('woff2');font-weight:900;font-display:swap}
+@font-face{font-family:Fraunces;src:url(polices/fraunces-latin-700-normal.woff2) format('woff2');font-weight:700;font-display:swap}
+:root{--bordeaux:#5E1622;--bordeaux2:#7B2230;--creme:#FAF6EC;--carte:#F7F2E6;--vert:#2E5A3E;--vertdoux:#DDEAD6;--sauge:#CFE0C6;--corail:#E4634A;--or:#E3B172;
+  --ombre:0 6px 18px rgba(94,22,34,.08),0 1px 3px rgba(94,22,34,.06);--bas:calc(64px + env(safe-area-inset-bottom))}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{background:var(--creme);color:var(--bordeaux);font-family:Figtree,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+body{min-height:100dvh;overflow-x:clip}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;touch-action:manipulation}
+button:disabled{cursor:default;opacity:.45}
+.serif{font-family:Fraunces,Georgia,serif;font-weight:700;letter-spacing:-.005em;line-height:1.18}
+.etiquette{color:var(--corail);font-weight:900;font-size:.75rem;letter-spacing:.02em;text-transform:uppercase}
+.app{max-width:760px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;padding-bottom:var(--bas)}
+
+/* ── En-tête ── */
+.entete{display:flex;align-items:center;gap:8px;padding:12px 16px 8px;flex-wrap:wrap}
+.marque{font-size:1.15rem;margin-right:auto}
+.pilule{background:var(--vertdoux);color:var(--vert);font-weight:700;font-size:.8rem;padding:5px 12px;border-radius:999px;white-space:nowrap;max-width:60vw;overflow:hidden;text-overflow:ellipsis}
+.pilule.alerte{background:#FBE3DC;color:var(--bordeaux)}
+
+/* ── Les boutons ── */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font-weight:700;min-height:52px;padding:0 18px;font-size:1rem;width:100%;text-align:center}
+.btn-vert{background:var(--vert);color:#fff}
+.btn-doux{background:var(--vertdoux);color:var(--vert)}
+.btn-trait{background:#fff;color:var(--vert);box-shadow:inset 0 0 0 2px var(--sauge)}
+.btn-texte{min-height:44px;color:var(--bordeaux2);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.btn-danger{background:#fff;color:var(--bordeaux);box-shadow:inset 0 0 0 2px #F3C9BE}
+
+/* ── Onglets, en bas, sous le pouce ── */
+.onglets{position:fixed;left:0;right:0;bottom:0;z-index:5;background:#fff;border-top:1px solid var(--sauge);padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+.onglets .rang{display:flex;max-width:760px;margin:0 auto;gap:4px}
+.onglets button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:52px;border-radius:14px;font-size:.75rem;font-weight:700;color:var(--bordeaux2)}
+.onglets button.actif{background:var(--vertdoux);color:var(--vert)}
+.onglets svg{width:22px;height:22px}
+.pastille{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--corail);color:#fff;font-size:.72rem;font-weight:900;line-height:1}
+
+/* ── Sell ── */
+.total{margin:0 14px 10px;background:#fff;border-radius:18px;box-shadow:var(--ombre);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.total .t{font-size:2rem}
+.total .q{font-size:.85rem;color:var(--bordeaux2);text-align:right;display:flex;flex-direction:column;align-items:flex-end}
+.total .btn-texte{color:var(--corail);min-height:44px;min-width:64px;padding:0 4px;margin-right:-4px}
+.liste{display:flex;flex-direction:column;gap:10px;padding:0 14px 250px}
+.ligne{display:flex;align-items:center;gap:12px;background:#fff;border-radius:18px;box-shadow:var(--ombre);padding:8px 10px 8px 8px;text-align:left;width:100%}
+.ligne.choisi{box-shadow:0 0 0 3px var(--vert),var(--ombre)}
+.ligne img,.ligne .sansphoto{width:78px;height:78px;border-radius:14px;object-fit:cover;flex:none;background:var(--carte)}
+.ligne .txt{flex:1;min-width:0}
+.ligne .nom{font-weight:700;font-size:.95rem;line-height:1.25;overflow-wrap:anywhere}
+.ligne .det{font-size:.8rem;color:var(--bordeaux2)}
+.ligne .prix{font-size:1.1rem}
+.pas{display:flex;align-items:center;gap:4px;flex:none}
+.pas button{width:46px;height:46px;border-radius:999px;font-size:1.5rem;font-weight:700;line-height:1;display:grid;place-items:center}
+.pas .moins{background:var(--carte);color:var(--bordeaux)}
+.pas .plus{background:var(--vert);color:#fff}
+.pas .n{min-width:24px;text-align:center;font-weight:900;font-size:1.15rem}
+.payer{position:fixed;left:0;right:0;bottom:var(--bas);z-index:4;background:var(--creme);border-top:1px solid var(--sauge)}
+.payer .dedans{max-width:760px;margin:0 auto;padding:8px 14px 10px}
+.payer .etiquette{display:block;margin:0 4px 6px}
+.payer .grille{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.payer .qr{grid-column:1/-1;min-height:56px;font-size:1.05rem}
+.payer .large{grid-column:1/-1}
+.vide{margin:24px 18px;padding:22px;background:var(--carte);border-radius:18px;text-align:center}
+
+/* ── Orders ── */
+.appel{margin:0 10px 12px;background:var(--carte);border-radius:18px;padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:.85rem}
+.appel b{font-family:Fraunces,serif;font-size:1.6rem;line-height:1.2}
+.colonnes{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px 16px;align-items:start}
+.col h2{font-size:1.05rem;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:8px 10px;border-radius:14px;margin-bottom:8px}
+.col.a h2{background:#fff;box-shadow:var(--ombre)}
+.col.b h2{background:var(--vert);color:#fff}
+.col.b h2 .pastille{background:#fff;color:var(--vert)}
+.pile{display:flex;flex-direction:column;gap:8px}
+.ticket{background:#fff;border-radius:18px;box-shadow:var(--ombre);padding:10px;text-align:center}
+.ticket .num{font-size:3rem;line-height:1}
+.ticket .meta{display:flex;flex-direction:column;font-size:.75rem;margin-top:2px}
+.ticket .paye{color:var(--vert);font-weight:700}
+.ticket .age{color:var(--bordeaux2)}
+.ticket ul{list-style:none;margin:8px 0 10px;font-weight:700;font-size:.88rem;line-height:1.3;text-align:left}
+.ticket li{padding:4px 0;border-top:1px dashed var(--sauge);overflow-wrap:anywhere}
+.ticket li span{color:var(--corail);font-weight:900;margin-right:4px}
+.ticket .btn{min-height:48px;font-size:.95rem;padding:0 10px}
+.ticket .btn-texte{font-size:.8rem;margin-top:2px;width:100%}
+.ticket.prete{background:var(--vertdoux)}
+.col .rien{font-size:.85rem;color:var(--bordeaux2);text-align:center;padding:16px 6px}
+
+/* ── Les feuilles (confirmer un paiement, le QR) ── */
+.voile{position:fixed;inset:0;z-index:10;background:rgba(94,22,34,.35);display:flex;align-items:flex-end;justify-content:center}
+.feuille{background:var(--creme);width:100%;max-width:560px;border-radius:24px 24px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom));max-height:92dvh;overflow:auto;display:flex;flex-direction:column;gap:10px}
+.feuille h2{font-size:1.5rem}
+.feuille .montant{font-size:2.6rem}
+.feuille ul{list-style:none;font-weight:700;font-size:.95rem}
+.feuille li span{color:var(--corail);font-weight:900;margin-right:6px}
+.feuille .deux{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.carreQr{background:#fff;border-radius:18px;padding:14px;display:grid;place-items:center;min-height:250px;box-shadow:var(--ombre)}
+.carreQr svg{width:min(70vw,280px);height:auto}
+.attente{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;color:var(--vert)}
+.point{width:10px;height:10px;border-radius:999px;background:var(--vert);animation:pouls 1.2s infinite}
+@keyframes pouls{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.point{animation:none}}
+.paye-ok{background:var(--vert);color:#fff;border-radius:18px;padding:26px;text-align:center;font-size:1.6rem}
+
+/* ── Summary ── */
+.page{padding:0 14px 20px;display:flex;flex-direction:column;gap:12px}
+.page h1{font-size:1.6rem;padding:0 4px}
+.clavier{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:320px;margin:0 auto;width:100%}
+.clavier button{min-height:64px;border-radius:18px;background:#fff;box-shadow:var(--ombre);font-size:1.5rem;font-weight:700}
+.points{display:flex;justify-content:center;gap:10px;min-height:22px}
+.points i{width:14px;height:14px;border-radius:999px;background:var(--sauge)}
+.points i.plein{background:var(--vert)}
+.message{text-align:center;font-weight:700}
+.message.erreur{color:var(--corail)}
+.bloc{background:#fff;border-radius:18px;box-shadow:var(--ombre);padding:14px 16px}
+.bloc h2{font-size:1.1rem;margin-bottom:6px}
+.chiffre{font-size:2.4rem}
+.rangs{width:100%;border-collapse:collapse;font-size:.95rem}
+.rangs td{padding:7px 0;border-top:1px dashed var(--sauge);vertical-align:top}
+.rangs td:last-child{text-align:right;font-weight:700;white-space:nowrap;padding-left:10px}
+.rangs td.q{color:var(--bordeaux2);white-space:nowrap;padding:7px 8px;text-align:right}
+.filtres{display:flex;gap:8px;flex-wrap:wrap}
+.filtres button{min-height:44px;padding:0 16px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 2px var(--sauge);font-weight:700;color:var(--vert)}
+.filtres button.actif{background:var(--vert);color:#fff;box-shadow:none}
+
+/* ── Setup (les deux comptes humains seulement) ── */
+.champ{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:.85rem}
+.champ input,.champ select{min-height:48px;border-radius:14px;border:2px solid var(--sauge);background:#fff;padding:0 12px;font-weight:400;font-size:1rem;width:100%}
+.form{display:grid;gap:10px}
+.form .deux{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.produitReglage{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px dashed var(--sauge)}
+.produitReglage img,.produitReglage .sansphoto{width:52px;height:52px;border-radius:12px;object-fit:cover;flex:none;background:var(--carte)}
+.produitReglage .txt{flex:1;min-width:0;font-size:.9rem}
+.produitReglage .txt b{display:block;overflow-wrap:anywhere}
+.produitReglage.eteint{opacity:.5}
+.mini{min-height:44px;min-width:44px;border-radius:999px;background:var(--carte);font-weight:900;padding:0 12px}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px}
+.photos button{border-radius:12px;overflow:hidden;aspect-ratio:1;box-shadow:inset 0 0 0 2px transparent}
+.photos button.actif{box-shadow:0 0 0 3px var(--vert)}
+.photos img{width:100%;height:100%;object-fit:cover;display:block}
+.note{font-size:.85rem;color:var(--bordeaux2)}
+
+/* ── Connexion ── */
+.connexion{max-width:420px;margin:0 auto;padding:12vh 20px 20px;display:flex;flex-direction:column;gap:14px}
+.connexion h1{font-size:2rem}
+.rayure{height:10px;border-radius:999px;background:repeating-linear-gradient(90deg,var(--sauge) 0 10px,var(--creme) 10px 20px)}
+
+/* ── Le message d'un instant ── */
+.toast{position:fixed;left:50%;bottom:calc(var(--bas) + 210px);translate:-50% 0;z-index:20;background:var(--bordeaux);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 10px 24px rgba(94,22,34,.3);max-width:90vw;text-align:center}
+
+@media (min-width:700px){
+  .liste{display:grid;grid-template-columns:1fr 1fr}
+}
