@@ -3,16 +3,16 @@
   "short_name": "Stand",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#FAF6EC",
-  "theme_color": "#FAF6EC",
+  "background_color": "#5E1622",
+  "theme_color": "#5E1622",
   "icons": [
     {
-      "src": "icone-192.png",
+      "src": "icone-stand-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icone-512.png",
+      "src": "icone-stand-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
