@@ -228,3 +228,101 @@ html,body{overscroll-behavior:none}
 /* 4. La fiche d'un produit, en feuille. */
 .voile.fiche .feuille{gap:10px}
 .voile.fiche h3{font-size:1.4rem}
+
+/* ── Le four (25/11/2026, tranché par Samer) : chaque fournée se voit en haut de TOUS les écrans,
+   la plus ancienne d'abord. À 8 min, or (« Check ») ; à 9 min, corail (« Take out! »). ── */
+.four{margin:0 14px 10px;background:var(--carte);border-radius:18px;padding:6px 8px 6px 14px;display:flex;align-items:center;gap:10px}
+.four .etiquette{white-space:nowrap}
+/* Les puces passent à la ligne plutôt que de sortir de l'écran : une fournée cachée à droite s'oublierait. */
+.four .puces{display:flex;flex-wrap:wrap;gap:8px;flex:1;padding:2px 0}
+.puce{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 16px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 2px var(--sauge);white-space:nowrap;font-weight:700;flex:none}
+.puce b{font-size:1.2rem}
+.puce{max-width:100%;min-width:0}
+.puce .quoi{font-size:.9rem;max-width:200px;min-width:0;overflow:hidden;text-overflow:ellipsis}
+/* Sur téléphone : l'étiquette au-dessus, des puces plus basses — une fournée ne sort jamais de l'écran. */
+@media (max-width:699px){
+  .four{flex-direction:column;align-items:stretch;gap:4px;padding:8px 10px}
+  .puce{min-height:44px;padding:0 12px;gap:6px}
+  .puce b{font-size:1.05rem}
+  .puce .quoi{font-size:.82rem;max-width:none;flex:1 1 auto}
+  .puce .temps{font-size:.95rem}
+}
+.puce .temps{font-variant-numeric:tabular-nums;font-weight:900;color:var(--vert);font-size:1.05rem}
+.puce.alerte{background:var(--or);box-shadow:none}
+.puce.alerte .temps{color:var(--bordeaux)}
+/* L'alarme bat par un halo, pas par la transparence : le texte reste lisible à chaque instant. */
+.puce.forte{background:var(--corail);color:#fff;box-shadow:0 0 0 0 rgba(228,99,74,.6);animation:alarme 1.2s infinite}
+@keyframes alarme{70%{box-shadow:0 0 0 10px rgba(228,99,74,0)}100%{box-shadow:0 0 0 0 rgba(228,99,74,0)}}
+.puce.forte .temps{color:#fff}
+@media (prefers-reduced-motion:reduce){.puce.forte{animation:none}}
+
+/* ── L'iPad (Samer, 25/11/2026 : direction A, la commande à côté) : au-delà de 700 × 600.
+   L'iPhone, même couché (≤ 440 px de haut), garde sa page. ── */
+@media (min-width:700px) and (min-height:600px){
+  .app{max-width:none}
+  .entete{padding:14px 24px 10px}
+  .four{margin:0 24px 12px}
+  /* Sur « Sell », seule la vitrine défile : la commande et les paiements ne bougent jamais. */
+  .app[data-ecran-actif="vendre"]{height:100dvh;min-height:0}
+  .app[data-ecran-actif="vendre"] main{flex:1;min-height:0}
+  .ipad .vitrine{overflow-y:auto;min-height:0;padding:2px 2px 20px}
+  .tuiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:14px}
+  .tuile{position:relative;background:#fff;border-radius:18px;box-shadow:var(--ombre);overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  .tuile.choisi{box-shadow:0 0 0 3px var(--vert),var(--ombre)}
+  .tuile-toucher{display:flex;flex-direction:column;width:100%;text-align:left;height:100%}
+  .tuile .cadre{position:relative;display:block;aspect-ratio:4/3;background:var(--carte)}
+  .tuile .cadre img,.tuile .cadre .sansphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .tuile .txt{display:flex;flex-direction:column;padding:8px 12px 12px;flex:1}
+  .tuile .nom{font-weight:700;font-size:1rem;line-height:1.25}
+  .tuile .det{font-size:.82rem;color:var(--bordeaux2)}
+  .tuile .bas{display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin-top:auto;padding-top:4px}
+  .tuile .prix{font-size:1.25rem}
+  .tuile .cuit{position:absolute;left:8px;bottom:8px;background:var(--creme);color:var(--bordeaux);font-weight:900;font-size:.72rem;text-transform:uppercase;letter-spacing:.02em;padding:3px 10px;border-radius:999px}
+  .tuile .compte{position:absolute;top:8px;right:8px;min-width:44px;height:44px;padding:0 10px;border-radius:999px;background:var(--vert);color:#fff;font-weight:900;font-size:1.3rem;display:grid;place-items:center;pointer-events:none}
+  .tuile .moins{position:absolute;top:8px;left:8px;width:44px;height:44px;border-radius:999px;background:#fff;color:var(--bordeaux);font-size:1.6rem;font-weight:700;line-height:1;box-shadow:var(--ombre)}
+  .tuile.epuise{opacity:.55;box-shadow:none;background:var(--carte)}
+  .tuile.epuise img{filter:grayscale(1)}
+  .tuile-libre{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:180px;background:var(--vertdoux);color:var(--vert);font-weight:700;box-shadow:none}
+  .tuile-libre .serif{font-size:2.4rem;line-height:1}
+
+  /* Deux zones : la vitrine à gauche, la commande toujours visible à droite. */
+  .ipad{height:100%;display:grid;grid-template-columns:1fr clamp(290px,31vw,370px);gap:20px;padding:0 20px 14px 24px}
+  .commande{display:flex;flex-direction:column;min-height:0;background:#fff;border-radius:24px;box-shadow:var(--ombre);padding:14px 16px 16px}
+  .commande .tete{display:flex;align-items:center;justify-content:space-between;min-height:44px}
+  .commande .vider{color:var(--corail);min-width:64px}
+  .commande .lignes{list-style:none;flex:1;overflow-y:auto;min-height:0;margin:4px 0}
+  .commande .lignes li{display:grid;grid-template-columns:auto 1fr auto 44px;align-items:center;gap:8px;padding:6px 0;border-top:1px dashed var(--sauge);font-weight:700;font-size:.95rem;line-height:1.25}
+  .commande .lignes .q{color:var(--corail);font-weight:900}
+  .commande .lignes .moins{width:44px;height:44px;border-radius:999px;background:var(--carte);font-size:1.4rem;font-weight:700}
+  .commande .lignes li.rien{display:block;color:var(--bordeaux2);font-weight:400;text-align:center;padding:28px 0}
+  .commande .pied{border-top:1px solid var(--sauge);padding-top:10px}
+  .commande .tot{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px;color:var(--bordeaux2);font-weight:700}
+  .commande .tot b{font-size:2.2rem;color:var(--bordeaux)}
+  .commande .grille{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .commande .btn{min-height:62px;font-size:1.05rem}
+
+}
+
+/* ── Le four dans Orders (25/11/2026) : To bake → In the oven → Ready ── */
+.puce.muet{background:var(--bordeaux);color:#fff;box-shadow:none}
+/* Sur téléphone, deux colonnes : « To bake » au-dessus de « In the oven » (le bandeau, en haut, montre
+   déjà le four ; une commande neuve ne doit pas se perdre sous les tickets du four), « Ready » à côté. */
+.colonnes{grid-template-columns:1fr 1fr;grid-template-areas:"a b" "f b"}
+.col.a{grid-area:a}.col.f{grid-area:f}.col.b{grid-area:b}
+.col.f h2{background:var(--or);color:var(--bordeaux)}
+.col.f h2 .pastille{background:var(--bordeaux)}
+.ticket .chrono{font-size:2.4rem;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--vert)}
+.ticket .entre{font-size:.8rem;color:var(--bordeaux2)}
+.ticket.au-four.alerte{background:#F8E7CC;box-shadow:0 0 0 3px var(--or),var(--ombre)}
+.ticket.au-four.alerte .chrono{color:var(--bordeaux)}
+.ticket.au-four.forte{background:#FBE3DC;box-shadow:0 0 0 3px var(--corail),var(--ombre)}
+.ticket.au-four.forte .chrono{color:var(--corail)}
+.four-mot{color:var(--vert);font-weight:700}
+/* « Baked on the spot » dans la fiche d'un produit : une case qu'on touche du pouce. */
+.case{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:14px;box-shadow:inset 0 0 0 2px var(--sauge);padding:12px 14px;font-weight:700;cursor:pointer}
+.case input{width:26px;height:26px;margin-top:1px;accent-color:var(--vert);flex:none}
+.case small{display:block;font-weight:400;font-size:.82rem;color:var(--bordeaux2)}
+@media (min-width:700px) and (min-height:600px){
+  .colonnes{grid-template-columns:repeat(3,1fr);grid-template-areas:"a f b";padding:0 24px 16px;gap:14px}
+  .appel{margin:0 24px 12px}
+}
