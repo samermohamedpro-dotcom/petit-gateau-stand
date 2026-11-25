@@ -68,6 +68,12 @@ button:disabled{cursor:default;opacity:.45}
 /* Une seule rangée (Samer, 24/11/2026 : « trop gros, prend trop de place ») : la liste des produits reste ce qu'on voit le plus. */
 .payer .grille{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;gap:6px}
 .payer .btn{min-height:48px;padding:0 6px;font-size:.92rem}
+/* « Sold out » (25/11/2026) : à sa place, grisé ; l'appui long ne sélectionne ni n'ouvre le menu de l'image. */
+.ligne[data-produit]{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.ligne.epuise{opacity:.55;box-shadow:none;background:var(--carte)}
+.ligne.epuise img{filter:grayscale(1)}
+.marque-epuise{font-weight:900;color:var(--corail);font-size:.85rem;text-transform:uppercase;letter-spacing:.02em}
+.astuce{text-align:center;padding:4px 0 0}
 .vide{margin:24px 18px;padding:22px;background:var(--carte);border-radius:18px;text-align:center}
 
 /* ── Orders ── */
@@ -90,6 +96,7 @@ button:disabled{cursor:default;opacity:.45}
 .ticket .btn{min-height:48px;font-size:.95rem;padding:0 10px}
 .ticket .btn-texte{font-size:.8rem;margin-top:2px;width:100%}
 .ticket.prete{background:var(--vertdoux)}
+.ticket .annuler{color:var(--corail);font-size:.78rem}
 .col .rien{font-size:.85rem;color:var(--bordeaux2);text-align:center;padding:16px 6px}
 
 /* ── Les feuilles (confirmer un paiement, le QR) ── */
@@ -106,6 +113,12 @@ button:disabled{cursor:default;opacity:.45}
 .point{width:10px;height:10px;border-radius:999px;background:var(--vert);animation:pouls 1.2s infinite}
 @keyframes pouls{50%{opacity:.25}}
 @media (prefers-reduced-motion:reduce){.point{animation:none}}
+/* Les espèces : ce que le client tend, ce qu'on rend (25/11/2026). */
+.billets{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.billets button{min-height:52px;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 2px var(--sauge);font-weight:700;color:var(--vert)}
+.billets button.actif{background:var(--vert);color:#fff;box-shadow:none}
+.rendu{background:var(--vertdoux);border-radius:18px;padding:10px 14px;display:flex;align-items:baseline;justify-content:space-between;font-weight:700;color:var(--vert)}
+.rendu b{font-size:2rem;color:var(--bordeaux)}
 .paye-ok{background:var(--vert);color:#fff;border-radius:18px;padding:26px;text-align:center;font-size:1.6rem}
 
 /* ── Summary ── */
@@ -158,8 +171,8 @@ button:disabled{cursor:default;opacity:.45}
 .connexion h1{font-size:2rem}
 .rayure{height:10px;border-radius:999px;background:repeating-linear-gradient(90deg,var(--sauge) 0 10px,var(--creme) 10px 20px)}
 
-/* ── Le message d'un instant ── */
-.toast{position:fixed;left:50%;bottom:calc(var(--bas) + 210px);translate:-50% 0;z-index:20;background:var(--bordeaux);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 10px 24px rgba(94,22,34,.3);max-width:90vw;text-align:center}
+/* ── Le message d'un instant ── laisse passer le doigt : il se lit, il ne se touche pas (25/11/2026). */
+.toast{pointer-events:none;position:fixed;left:50%;bottom:calc(var(--bas) + 210px);translate:-50% 0;z-index:20;background:var(--bordeaux);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 10px 24px rgba(94,22,34,.3);max-width:90vw;text-align:center}
 
 @media (min-width:700px){
   .liste{display:grid;grid-template-columns:1fr 1fr}
