@@ -326,3 +326,10 @@ html,body{overscroll-behavior:none}
   .colonnes{grid-template-columns:repeat(3,1fr);grid-template-areas:"a f b";padding:0 24px 16px;gap:14px}
   .appel{margin:0 24px 12px}
 }
+
+/* ── Les commandes du Summary, pour les deux humains (25/11/2026) : une ligne, et « Delete » ── */
+.liste-commandes{display:flex;flex-direction:column}
+.une-commande{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px dashed var(--sauge)}
+.une-commande .txt{flex:1;min-width:0;font-size:.92rem}
+.une-commande .txt .note{display:block;overflow-wrap:anywhere}
+.une-commande .serif{white-space:nowrap}
