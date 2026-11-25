@@ -205,3 +205,26 @@ button:disabled{cursor:default;opacity:.45}
 @keyframes effet-voile{0%{opacity:0}12%{opacity:1}75%{opacity:1}100%{opacity:0}}
 @keyframes effet-rond{0%{transform:scale(.3)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.effet,.effet .rond{animation:none}}
+
+/* ── L'audit iPhone, tranché par Samer le 25/11/2026 (« oui » aux six) ── */
+/* 2. Tirer vers le bas ne recharge pas la caisse (le panier en cours se perdait). Les rapports
+   lus le 25/11/2026 disent qu'iOS ne l'écoute pas toujours : « au moins on a essayé » (Samer). */
+html,body{overscroll-behavior:none}
+/* 1. Pendant qu'on tape, sur téléphone, les barres du bas s'effacent au lieu de se coller au-dessus
+   du clavier (saisie.js pose `data-saisie`). Elles sont fixes : rien d'autre ne bouge. */
+@media (max-width:699px){html[data-saisie] .onglets,html[data-saisie] .payer{display:none}}
+/* 3. Les noms de « Sell » à gauche : ils étaient centrés par le bouton (display:contents lui laisse
+   son text-align), et se lisent mieux en liste depuis que leur colonne est fixe. */
+.ligne .txt{text-align:left}
+/* 5. Setup en sections repliées : l'en-tête se touche, une seule section ouverte. */
+.section{padding:0}
+.section .tete{display:flex;align-items:center;gap:10px;width:100%;min-height:60px;padding:10px 16px;text-align:left}
+.section .titre{font-size:1.1rem;flex:1}
+.section .resume{font-size:.85rem;color:var(--bordeaux2);font-weight:700}
+.section .resume .alerte{color:var(--corail)}
+.section .chevron{display:grid;place-items:center;width:32px;height:32px;border-radius:999px;background:var(--carte);font-weight:900;font-size:1.2rem;color:var(--vert)}
+.section.ouverte .tete{border-bottom:1px dashed var(--sauge)}
+.section .corps{padding:6px 16px 16px}
+/* 4. La fiche d'un produit, en feuille. */
+.voile.fiche .feuille{gap:10px}
+.voile.fiche h3{font-size:1.4rem}
