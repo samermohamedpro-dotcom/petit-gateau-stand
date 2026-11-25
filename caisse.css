@@ -57,7 +57,9 @@ button:disabled{cursor:default;opacity:.45}
 .ligne .nom{font-weight:700;font-size:.95rem;line-height:1.25;overflow-wrap:anywhere}
 .ligne .det{font-size:.8rem;color:var(--bordeaux2)}
 .ligne .prix{font-size:1.1rem}
-.pas{display:flex;align-items:center;gap:4px;flex:none}
+/* La place de « − 1 + » est GARDÉE même vide (Samer, 25/11/2026 : « rien ne bouge ») : sinon le
+   premier « + » serrait le nom sur deux lignes et toute la liste descendait sous le doigt. 46+4+24+4+46. */
+.pas{display:flex;align-items:center;justify-content:flex-end;gap:4px;flex:none;min-width:124px}
 .pas button{width:46px;height:46px;border-radius:999px;font-size:1.5rem;font-weight:700;line-height:1;display:grid;place-items:center}
 .pas .moins{background:var(--carte);color:var(--bordeaux)}
 .pas .plus{background:var(--vert);color:#fff}
@@ -164,6 +166,11 @@ button:disabled{cursor:default;opacity:.45}
 .photos button{border-radius:12px;overflow:hidden;aspect-ratio:1;box-shadow:inset 0 0 0 2px transparent}
 .photos button.actif{box-shadow:0 0 0 3px var(--vert)}
 .photos img{width:100%;height:100%;object-fit:cover;display:block}
+/* « Remove photos » (25/11/2026) : chaque photo porte une croix ; un toucher la retire de la liste. */
+.photos.retrait button{position:relative;box-shadow:inset 0 0 0 2px #F3C9BE}
+.photos.retrait img{opacity:.8}
+.photos .croix{position:absolute;top:4px;right:4px;width:26px;height:26px;border-radius:999px;background:var(--bordeaux);color:#fff;font-weight:900;font-size:1.05rem;line-height:26px;text-align:center}
+.retirer-photos{justify-self:start;font-size:.85rem}
 .note{font-size:.85rem;color:var(--bordeaux2)}
 
 /* ── Connexion ── */
