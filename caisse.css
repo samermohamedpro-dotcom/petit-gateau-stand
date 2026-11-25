@@ -45,7 +45,10 @@ button:disabled{cursor:default;opacity:.45}
 .pastille{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--corail);color:#fff;font-size:.72rem;font-weight:900;line-height:1}
 
 /* ── Sell ── */
-.total{margin:0 14px 10px;background:#fff;border-radius:18px;box-shadow:var(--ombre);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+/* Collé en haut quand on descend la liste (Samer, 25/11/2026 : « que le prix reste fixe tout le temps »).
+   L'enveloppe crème cache ce qui défile derrière ; elle remonte de 6 px pour garder la place d'avant. */
+.total-colle{position:sticky;top:0;z-index:3;background:var(--creme);padding:6px 14px 10px;margin-top:-6px}
+.total{margin:0;background:#fff;border-radius:18px;box-shadow:var(--ombre);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .total .t{font-size:2rem}
 .total .q{font-size:.85rem;color:var(--bordeaux2);text-align:right;display:flex;flex-direction:column;align-items:flex-end}
 .total .btn-texte{color:var(--corail);min-height:44px;min-width:64px;padding:0 4px;margin-right:-4px}
@@ -149,6 +152,12 @@ button:disabled{cursor:default;opacity:.45}
 .champ input,.champ select{min-height:48px;border-radius:14px;border:2px solid var(--sauge);background:#fff;padding:0 12px;font-weight:400;font-size:1rem;width:100%}
 .form{display:grid;gap:10px}
 .form .deux{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* La date sur iPhone (Samer, 25/11/2026 : « 25 nov. 2026 » sortait de la carte, plus basse que « Name »).
+   Safari iOS donne au champ date une largeur minimale à lui et ignore min-height tant qu'il garde son
+   apparence native : on la retire, et la colonne de la grille a le droit de rétrécir (min-width:0). */
+.form .deux>*{min-width:0}
+.champ input[type=date]{-webkit-appearance:none;appearance:none;min-width:0;display:block;text-align:left;height:48px}
+.champ input[type=date]::-webkit-date-and-time-value{text-align:left}
 .produitReglage{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px dashed var(--sauge)}
 .produitReglage img,.produitReglage .sansphoto{width:52px;height:52px;border-radius:12px;object-fit:cover;flex:none;background:var(--carte)}
 .produitReglage .txt{flex:1;min-width:0;font-size:.9rem}
