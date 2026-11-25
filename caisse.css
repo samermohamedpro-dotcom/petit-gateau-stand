@@ -192,19 +192,20 @@ button:disabled{cursor:default;opacity:.45}
 .rendu.manque{background:#FBE3DC;color:var(--bordeaux)}
 .rendu.manque b{font-size:1.4rem}
 
-/* ── L'effet d'un instant (Samer, 25/11/2026) : encaissé en vert, annulé en bordeaux.
-   Il laisse passer le doigt, et dure 1,1 s : on vend au suivant sans l'attendre. ── */
-.effet{pointer-events:none;position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-align:center;padding:24px;animation:effet-voile 1.1s ease-out both}
+/* ── L'effet (Samer, 25/11/2026) : encaissé en vert, annulé en bordeaux. Il laisse passer le doigt :
+   on vend au suivant sans l'attendre. Plus de flash (Samer, le même soir : « il s'allume, reste
+   2 secondes et disparaît doucement, pour les deux ») : 0,2 s pour s'allumer, plein jusqu'à 2,2 s,
+   puis 0,6 s pour s'effacer — 2,8 s en tout, la durée de `effet()` dans main.js. Le rond ne bondit plus. ── */
+.effet{pointer-events:none;position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-align:center;padding:24px;animation:effet-voile 2.8s ease-in-out both}
 .effet.paye{background:rgba(46,90,62,.94)}
 .effet.annule{background:rgba(94,22,34,.94)}
-.effet .rond{width:112px;height:112px;border-radius:999px;display:grid;place-items:center;font-size:4rem;font-weight:900;line-height:1;background:#fff;animation:effet-rond .45s cubic-bezier(.2,1.6,.4,1) both}
+.effet .rond{width:112px;height:112px;border-radius:999px;display:grid;place-items:center;font-size:4rem;font-weight:900;line-height:1;background:#fff}
 .effet.paye .rond{color:var(--vert)}
 .effet.annule .rond{color:var(--bordeaux)}
 .effet .mot{font-size:2.4rem}
 .effet .sous{font-weight:700;font-size:1.05rem;opacity:.9}
-@keyframes effet-voile{0%{opacity:0}12%{opacity:1}75%{opacity:1}100%{opacity:0}}
-@keyframes effet-rond{0%{transform:scale(.3)}100%{transform:scale(1)}}
-@media (prefers-reduced-motion:reduce){.effet,.effet .rond{animation:none}}
+@keyframes effet-voile{0%{opacity:0}7%{opacity:1}79%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.effet{animation:none}}
 
 /* ── L'audit iPhone, tranché par Samer le 25/11/2026 (« oui » aux six) ── */
 /* 2. Tirer vers le bas ne recharge pas la caisse (le panier en cours se perdait). Les rapports
