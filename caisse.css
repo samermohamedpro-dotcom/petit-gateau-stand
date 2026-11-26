@@ -401,3 +401,14 @@ html,body{overscroll-behavior:none}
 .une-commande .txt{flex:1;min-width:0;font-size:.92rem}
 .une-commande .txt .note{display:block;overflow-wrap:anywhere}
 .une-commande .serif{white-space:nowrap}
+
+/* L'entraînement, « Practice » (Samer, 26/11/2026) : il doit se voir d'un coup d'œil, partout — un bandeau corail en haut,
+   et un liseré corail autour de l'écran. Le corail est déjà la couleur de ce qui sort de l'ordinaire (« No event »). */
+.bandeau-pratique{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  margin:0 14px 10px;padding:4px 6px 4px 14px;border-radius:999px;background:var(--corail);color:#fff;font-weight:700;font-size:.9rem}
+.bandeau-pratique .btn-texte{color:#fff;min-height:44px;padding:0 10px;white-space:nowrap}
+.app.en-pratique{box-shadow:inset 0 0 0 4px var(--corail)}
+.qr-pratique{display:grid;place-items:center;align-content:center;gap:6px;text-align:center;padding:18px;border:2px dashed var(--corail);border-radius:18px;min-height:180px}
+.qr-pratique b{font-size:1.6rem;color:var(--corail)}
+.qr-pratique span{font-size:.9rem}
+.feuille .clavier.petit button{min-height:48px}

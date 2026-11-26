@@ -16,12 +16,12 @@
 //     jamais une vieille copie servie à la place d'une neuve ;
 //   · version.txt ne passe pas par ici : la caisse y lit si une version neuve
 //     est en ligne (point 5), et une copie gardée lui mentirait.
-//  202611261747 est remplacé par construire.mjs : chaque version a donc un
+//  202611262027 est remplacé par construire.mjs : chaque version a donc un
 //  service worker différent, que le navigateur installe — avec ses fichiers.
 //  Firebase (googleapis.com) ne passe pas par ici.
 // ═══════════════════════════════════════════════════════════════════
 const CACHE = 'caisse-de-stand';
-const VERSION = '202611261747';
+const VERSION = '202611262027';
 const FICHIERS = [
   './', `caisse.js?v=${VERSION}`, `caisse.css?v=${VERSION}`, 'manifest.webmanifest',
   'polices/figtree-latin-400-normal.woff2', 'polices/figtree-latin-700-normal.woff2',
