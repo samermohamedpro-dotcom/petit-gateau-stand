@@ -135,6 +135,10 @@ button.pilule{min-height:44px;padding:0 14px}
 .feuille .note{text-align:center}
 .carreQr{background:#fff;border-radius:18px;padding:14px;display:grid;place-items:center;min-height:250px;box-shadow:var(--ombre)}
 .carreQr svg{width:min(70vw,280px);height:auto}
+/* Le QR d'une vente pas encore arrivée à la base (audit de solidité du 26/11/2026, point 9) : pâle, pour qu'on ne le
+   fasse pas scanner trop tôt — le client serait renvoyé sur le site au lieu du paiement. */
+.carreQr.envoi svg{opacity:.18}
+.carreQr.envoi + .attente{color:var(--corail)}
 .attente{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;color:var(--vert)}
 .point{width:10px;height:10px;border-radius:999px;background:var(--vert);animation:pouls 1.2s infinite}
 @keyframes pouls{50%{opacity:.25}}
@@ -209,7 +213,7 @@ button.pilule{min-height:44px;padding:0 14px}
 .rayure{height:10px;border-radius:999px;background:repeating-linear-gradient(90deg,var(--sauge) 0 10px,var(--creme) 10px 20px)}
 
 /* ── Le message d'un instant ── laisse passer le doigt : il se lit, il ne se touche pas (25/11/2026). */
-.toast{pointer-events:none;position:fixed;left:50%;bottom:calc(var(--bas) + 210px);translate:-50% 0;z-index:20;background:var(--bordeaux);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 10px 24px rgba(94,22,34,.3);max-width:90vw;text-align:center}
+.toast{pointer-events:none;position:fixed;left:50%;bottom:calc(var(--bas) + 210px);translate:-50% 0;z-index:35;background:var(--bordeaux);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 10px 24px rgba(94,22,34,.3);max-width:90vw;text-align:center}
 
 @media (min-width:700px){
   .liste{display:grid;grid-template-columns:1fr 1fr}
@@ -269,6 +273,15 @@ html,body{overscroll-behavior:none}
 
 /* ── Le four (25/11/2026, tranché par Samer) : chaque fournée se voit en haut de TOUS les écrans,
    la plus ancienne d'abord. À 8 min, or (« Check ») ; à 9 min, corail (« Take out! »). ── */
+/* Une vente que la base a refusée (audit de solidité du 26/11/2026, point 2) : en haut de tous les écrans, dans la
+   forme du bandeau du four, en rose d'alerte, jusqu'à « Seen ». Le message d'un instant (.toast) passe au-dessus de
+   l'effet « Paid » (z-index 30) : il s'affichait dessous, donc personne ne le lisait. */
+.refus{margin:0 14px 10px;background:#FBE3DC;color:var(--bordeaux);border-radius:18px;padding:6px 8px 10px 14px}
+.refus-tete{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:1rem}
+.refus-tete .btn-texte{min-height:44px;min-width:64px;padding:0 6px}
+.refus ul{list-style:none;font-weight:700;font-size:.9rem;line-height:1.3;display:grid;gap:4px}
+.refus li span{display:block;font-weight:400;font-size:.8rem}
+.refus p{font-size:.8rem;margin-top:6px}
 .four{margin:0 14px 10px;background:var(--carte);border-radius:18px;padding:6px 8px 6px 14px;display:flex;align-items:center;gap:10px}
 .four .etiquette{white-space:nowrap}
 /* Les puces passent à la ligne plutôt que de sortir de l'écran : une fournée cachée à droite s'oublierait. */
