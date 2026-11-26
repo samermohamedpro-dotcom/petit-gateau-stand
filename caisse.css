@@ -209,6 +209,10 @@ button.pilule{min-height:44px;padding:0 14px}
 .autre-montant .champ input{text-align:center;font-weight:700;font-size:1.2rem}
 .rendu.manque{background:#FBE3DC;color:var(--bordeaux)}
 .rendu.manque b{font-size:1.4rem}
+.compter-champs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.compter-champs .champ input{font-weight:700;font-size:1.2rem;text-align:center}
+.rendu.ecart{margin-top:8px}
+.rendu.ecart b{font-size:1.6rem}
 
 /* ── L'effet (Samer, 25/11/2026) : encaissé en vert, annulé en bordeaux. Il laisse passer le doigt :
    on vend au suivant sans l'attendre. Plus de flash (Samer, le même soir : « il s'allume, reste
