@@ -79,6 +79,12 @@ button.pilule{min-height:44px;padding:0 14px}
 .payer{position:fixed;left:0;right:0;bottom:var(--bas);z-index:4;background:var(--creme);border-top:1px solid var(--sauge)}
 .payer .dedans{max-width:760px;margin:0 auto;padding:8px 14px 10px}
 .payer .etiquette{display:block;margin:0 4px 6px}
+/* « Not sold? » (26/11/2026) : sur la ligne de « Pay … by », à droite, haute de 44 px comme l'avis « No event »
+   qu'elle remplace — la barre a donc la même hauteur avec ou sans événement. Invisible (sa place gardée) tant
+   que le panier n'a aucun produit : rien ne bouge au premier toucher. */
+.payer-tete{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;margin:0 4px 4px}
+.payer .payer-tete .etiquette,.commande .payer-tete .etiquette{margin:0}
+.hors-vente{color:var(--vert);white-space:nowrap;flex:none;min-width:44px;padding:0 2px}
 /* Une seule rangée (Samer, 24/11/2026 : « trop gros, prend trop de place ») : la liste des produits reste ce qu'on voit le plus. */
 .payer .grille{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .payer .btn{min-height:48px;padding:0 6px;font-size:.92rem}
@@ -121,6 +127,12 @@ button.pilule{min-height:44px;padding:0 14px}
 .feuille ul{list-style:none;font-weight:700;font-size:.95rem}
 .feuille li span{color:var(--corail);font-weight:900;margin-right:6px}
 .feuille .deux{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+/* Les quatre motifs d'une sortie, deux par deux : le nom, et dessous ce qu'il veut dire. */
+.feuille .motifs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.feuille .motif{flex-direction:column;gap:2px;min-height:68px;padding:8px 10px;line-height:1.2}
+.feuille .motif b{font-size:1.05rem}
+.feuille .motif span{font-size:.8rem;font-weight:400;color:var(--bordeaux2)}
+.feuille .note{text-align:center}
 .carreQr{background:#fff;border-radius:18px;padding:14px;display:grid;place-items:center;min-height:250px;box-shadow:var(--ombre)}
 .carreQr svg{width:min(70vw,280px);height:auto}
 .attente{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;color:var(--vert)}
@@ -221,6 +233,9 @@ button.pilule{min-height:44px;padding:0 14px}
 .effet{pointer-events:none;position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-align:center;padding:24px;animation:effet-voile 2.8s ease-in-out both}
 .effet.paye{background:rgba(46,90,62,.94)}
 .effet.annule{background:rgba(94,22,34,.94)}
+/* Une sortie (26/11/2026) : ni le vert plein de « Paid », ni le bordeaux de « Cancelled » — le vert doux. */
+.effet.sortie{background:rgba(221,234,214,.96);color:var(--bordeaux)}
+.effet.sortie .rond{color:var(--vert)}
 .effet .rond{width:112px;height:112px;border-radius:999px;display:grid;place-items:center;font-size:4rem;font-weight:900;line-height:1;background:#fff}
 .effet.paye .rond{color:var(--vert)}
 .effet.annule .rond{color:var(--bordeaux)}
