@@ -175,6 +175,12 @@ button.pilule{min-height:44px;padding:0 14px}
 /* ── Setup (les deux comptes humains seulement) ── */
 .champ{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:.85rem}
 .champ input,.champ select{min-height:48px;border-radius:14px;border:2px solid var(--sauge);background:#fff;padding:0 12px;font-weight:400;font-size:1rem;width:100%}
+/* Les menus (« Event » du Summary, « … sells at » de Setup, « Made from » d'un produit). Safari dessine un
+   <select> à sa façon et ignore min-height et les coins tant qu'il garde son apparence native : 26 px de haut et
+   des coins de 5 px dans WebKit, 48 et 14 dans Chromium (mesuré le 26/11/2026, tests-ecran.mjs § 10.1). On retire
+   cette apparence et on dessine la flèche nous-mêmes, en vert : Samer a choisi ce dessin (A) contre le menu de
+   Safari simplement agrandi (B), le 26/11/2026 sur captures à 390 px. La même parade que la date, plus bas. */
+.champ select{-webkit-appearance:none;appearance:none;height:48px;padding-right:44px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 5.5 5.5-5.5' fill='none' stroke='%232E5A3E' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 16px center}
 .form{display:grid;gap:10px}
 .form .deux{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 /* La date sur iPhone (Samer, 25/11/2026 : « 25 nov. 2026 » sortait de la carte, plus basse que « Name »).
